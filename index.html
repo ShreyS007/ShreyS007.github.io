@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Shreyas C, a 3rd-semester CSIT student exploring programming, problem solving, development tools and FinTech.">
+  <title>Shreyas C | CSIT Student Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --surface: #121a2d;
+      --surface-2: #18233b;
+      --text: #eef2ff;
+      --muted: #aab5ce;
+      --accent: #7dd3fc;
+      --accent-2: #a78bfa;
+      --border: rgba(255,255,255,.10);
+      --max: 1120px;
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(125,211,252,.12), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(167,139,250,.12), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), 92%); margin: auto; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(11,16,32,.78);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { font-weight: 800; letter-spacing: -.03em; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .95rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    .hero { padding: 120px 0 105px; position: relative; overflow: hidden; }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -170px;
+      top: 60px;
+      border: 1px solid rgba(125,211,252,.12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(125,211,252,.06);
+      font-size: .85rem;
+      margin-bottom: 22px;
+    }
+    h1 {
+      max-width: 850px;
+      font-size: clamp(3rem, 8vw, 6.2rem);
+      line-height: .98;
+      letter-spacing: -.065em;
+      margin-bottom: 28px;
+    }
+    .gradient {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin-bottom: 32px;
+    }
+    .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: transform .2s, border-color .2s, background .2s;
+    }
+    .button:hover { transform: translateY(-2px); border-color: rgba(125,211,252,.45); }
+    .button.primary { background: var(--text); color: #0b1020; border-color: transparent; font-weight: 700; }
+
+    section { padding: 90px 0; }
+    section + section { border-top: 1px solid rgba(255,255,255,.045); }
+    .section-heading { margin-bottom: 42px; max-width: 820px; }
+    .section-heading .label {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .75rem;
+      font-weight: 800;
+    }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.04em; margin-top: 5px; }
+    .section-intro { max-width: 700px; color: var(--muted); margin-top: 10px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 24px;
+    }
+    .panel {
+      background: rgba(18,26,45,.72);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .profile-meta { display: grid; gap: 15px; }
+    .meta-item small { color: var(--muted); display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+    .meta-item strong { font-size: 1.05rem; }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .skill {
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: #dbe5ff;
+      font-size: .9rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    .project {
+      display: flex;
+      flex-direction: column;
+      min-height: 330px;
+      background: linear-gradient(145deg, rgba(24,35,59,.95), rgba(18,26,45,.78));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      transition: transform .25s, border-color .25s;
+    }
+    .project:hover { transform: translateY(-5px); border-color: rgba(125,211,252,.35); }
+    .project-number { color: var(--accent); font-size: .8rem; font-weight: 800; letter-spacing: .1em; }
+    .project h3 { margin: 10px 0 12px; font-size: 1.45rem; letter-spacing: -.025em; }
+    .project p { color: var(--muted); font-size: .95rem; }
+    .project .repo {
+      margin-top: auto;
+      padding-top: 22px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: .9rem;
+      display: inline-flex;
+      width: fit-content;
+      transition: transform .2s;
+    }
+    .project .repo:hover { transform: translateX(4px); }
+
+    .direction {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 22px;
+    }
+    .direction .highlight {
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      line-height: 1.2;
+      letter-spacing: -.035em;
+    }
+    .direction p { color: var(--muted); }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .step {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      background: rgba(18,26,45,.55);
+      transition: transform .2s, border-color .2s;
+    }
+    .step:hover { transform: translateY(-3px); border-color: rgba(125,211,252,.25); }
+    .step b { color: var(--accent); display: block; margin-bottom: 5px; }
+    .step span { color: var(--muted); font-size: .88rem; }
+
+    footer {
+      padding: 45px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-inner a { color: var(--accent); }
+
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 80px; }
+      .about-grid, .direction, .projects { grid-template-columns: 1fr; }
+      .workflow { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 3rem; }
+      .workflow { grid-template-columns: 1fr; }
+      section { padding: 65px 0; }
+      .panel, .project { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#home">Shreyas<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#direction">Direction</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">3rd Semester · CSIT · Learning by Building</div>
+        <h1>Exploring <span class="gradient">computer science</span>, one project at a time.</h1>
+        <p>
+          I'm Shreyas C, a CSIT student building my foundation in programming,
+          problem solving, development tools and practical projects. I'm exploring
+          different areas of computer science while figuring out where I want to go deeper.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#projects">View my work</a>
+          <a class="button" href="https://github.com/ShreyS007" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div class="label">01 · About</div>
+          <h2>Building the fundamentals.</h2>
+          <p class="section-intro">
+            My recent work has focused on learning by doing: setting up development
+            environments, practising algorithms, building small programs, and learning
+            how to organise and publish work with Git and GitHub.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="panel">
+            <p>
+              Through coursework and practical activities, I've worked with C/C++,
+              VS Code, Git and GitHub, problem-solving platforms, and basic data
+              structures and algorithms. I am interested in trying different areas
+              before settling on a specific specialization, so my portfolio reflects
+              that exploration.
+            </p>
+          </div>
+          <div class="panel profile-meta">
+            <div class="meta-item"><small>Name</small><strong>Shreyas C</strong></div>
+            <div class="meta-item"><small>Branch</small><strong>CSIT</strong></div>
+            <div class="meta-item"><small>Semester</small><strong>3rd Semester</strong></div>
+            <div class="meta-item"><small>GitHub</small><strong>ShreyS007</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <div class="label">02 · Skills</div>
+          <h2>What I'm practising.</h2>
+          <p class="section-intro">Skills developed through coursework, coding practice and portfolio activities.</p>
+        </div>
+        <div class="panel">
+          <div class="skills">
+            <span class="skill">C / C++</span>
+            <span class="skill">Programming Fundamentals</span>
+            <span class="skill">Problem Solving</span>
+            <span class="skill">Data Structures</span>
+            <span class="skill">Algorithms</span>
+            <span class="skill">Time & Space Complexity</span>
+            <span class="skill">Testing & Debugging</span>
+            <span class="skill">VS Code</span>
+            <span class="skill">Git</span>
+            <span class="skill">GitHub</span>
+            <span class="skill">Branches & Pull Requests</span>
+            <span class="skill">GitHub Pages</span>
+            <span class="skill">Markdown</span>
+            <span class="skill">Project Organisation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <div class="label">03 · Projects & Practice</div>
+          <h2>Things I've built and practised.</h2>
+          <p class="section-intro">
+            A collection of practical activities and coding repositories from my current learning journey.
+          </p>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <div class="project-number">01 / DEVELOPMENT SETUP</div>
+            <h3>Git Setup & Hello World</h3>
+            <p>
+              Set up a C/C++ development environment using VS Code, the C/C++ extension
+              and GCC/MinGW-w64, then created and ran a basic Hello World program.
+            </p>
+            <a class="repo" href="https://github.com/ShreyS007/git-setup-hello-world" target="_blank" rel="noopener">View repository ↗</a>
+          </article>
+
+          <article class="project">
+            <div class="project-number">02 / PROBLEM SOLVING</div>
+            <h3>LeetCode Solutions</h3>
+            <p>
+              A structured practice repository covering arrays and strings, basic
+              algorithms, stacks and linked lists, with local testing, documentation
+              and complexity analysis.
+            </p>
+            <a class="repo" href="https://github.com/ShreyS007/leetcode-solutions" target="_blank" rel="noopener">View repository ↗</a>
+          </article>
+
+          <article class="project">
+            <div class="project-number">03 / ALGORITHMS</div>
+            <h3>HackerRank 3rd Sem Portfolio</h3>
+            <p>
+              Algorithmic problem-solving practice involving arrays, matrices,
+              strings, dynamic arrays and hash maps, with attention to time and
+              space complexity.
+            </p>
+            <a class="repo" href="https://github.com/ShreyS007/HackerRank-3rdSem-Portfolio" target="_blank" rel="noopener">View repository ↗</a>
+          </article>
+
+          <article class="project">
+            <div class="project-number">04 / C PROJECT</div>
+            <h3>Line Editor in C</h3>
+            <p>
+              A command-line text editor project involving line-based document
+              operations, data-structure design, implementation, testing,
+              debugging and documentation.
+            </p>
+            <a class="repo" href="https://github.com/ShreyS007/LineEditorRepo" target="_blank" rel="noopener">View repository ↗</a>
+          </article>
+        </div>
+
+        <div class="panel" style="margin-top:20px;">
+          <strong>Development workflow</strong>
+          <div class="workflow">
+            <div class="step"><b>01</b><span>Write & test locally</span></div>
+            <div class="step"><b>02</b><span>Commit changes</span></div>
+            <div class="step"><b>03</b><span>Branch & review</span></div>
+            <div class="step"><b>04</b><span>Publish with GitHub Pages</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="direction">
+      <div class="container">
+        <div class="section-heading">
+          <div class="label">04 · Learning Direction</div>
+          <h2>What I want to explore next.</h2>
+        </div>
+
+        <div class="direction">
+          <div class="panel">
+            <div class="highlight">Finance × Technology</div>
+          </div>
+          <div class="panel">
+            <p>
+              One area I am interested in exploring further is the intersection of
+              finance and technology, particularly FinTech. I want to understand how
+              technology can make financial processes more efficient and help solve
+              practical problems.
+            </p>
+            <br>
+            <p>
+              For now, my goal is to keep strengthening my programming and
+              problem-solving fundamentals, build practical projects, and explore
+              different areas of computer science. Over time, I want to understand
+              where my interests fit best and how I can apply technology to useful
+              real-world problems.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>Shreyas C · CSIT · 3rd Semester</span>
+      <a href="https://github.com/ShreyS007" target="_blank" rel="noopener">github.com/ShreyS007 ↗</a>
+    </div>
+  </footer>
+</body>
+</html>
